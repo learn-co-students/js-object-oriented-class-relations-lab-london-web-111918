@@ -24,16 +24,7 @@ class Driver {
   }
 
   passengers() {
-    const passengers = []
-    store.trips.forEach((trip) => {
-      if (this.id === trip.driverId) {
-        passengers.push(
-          store.passengers.find((passenger) => trip.passengerId === passenger.id)
-        )
-      }
-    })
-
-    return passengers
+    return this.trips().map((trip) => trip.passenger())
   }
 
 }
@@ -54,16 +45,7 @@ class Passenger {
   }
 
   drivers() {
-    const drivers = []
-    store.trips.forEach((trip) => {
-      if (this.id === trip.passengerId) {
-        drivers.push(
-          store.drivers.find((driver) => trip.driverId === driver.id)
-        )
-      }
-    })
-
-    return drivers
+    return this.trips().map((trip) => trip.driver())
   }
 
 }
